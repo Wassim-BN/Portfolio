@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { PhArrowRight, PhFolderOpen } from '@phosphor-icons/vue'
 
-import ProjectCard from '../components/ProjectCard.vue'
+import ProjectCard from '../components/ProjectCardComponent.vue'
 import { projects } from '../data/projects'
 
 const selectedCategory = ref('Tous')
