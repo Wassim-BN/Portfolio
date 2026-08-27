@@ -8,6 +8,8 @@ import {
   PhPaperPlaneTilt,
 } from '@phosphor-icons/vue'
 
+import PageHeader from '../components/PageHeaderComponent.vue'
+
 const form = ref({
   name: '',
   email: '',
@@ -47,35 +49,20 @@ const sendMessage = () => {
 <template>
   <main role="main" class="min-h-screen">
     <!-- Introduction -->
-    <section class="mx-auto max-w-6xl px-6 pb-16 pt-24">
-      <div class="max-w-3xl">
-        <div
-          class="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900 px-4 py-2 text-sm text-magenta"
-        >
-          <PhPaperPlaneTilt :size="18" weight="bold" />
-          Me contacter
-        </div>
-
-        <h1
-          class="mt-8 text-5xl font-bold tracking-tight text-white md:text-6xl"
-        >
-          Une idée commence souvent par
-          <span class="text-magenta">une conversation.</span>
-        </h1>
-
-        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-400">
-          Vous avez une question, une idée de projet ou simplement envie
-          d'échanger autour du développement web ? N'hésitez pas à m'écrire.
-        </p>
-      </div>
-    </section>
+    <PageHeader
+      eyebrow="Contact"
+      title="Une idée commence souvent par"
+      :icon="PhPaperPlaneTilt"
+      highlight="une conversation."
+      description="Une question, une opportunité ou simplement envie d'échanger ? N'hésitez pas à me contacter."
+    />
 
     <!-- Zone principale -->
-    <section class="mx-auto max-w-6xl px-6 pb-24">
-      <div class="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+    <section class="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24">
+      <div class="grid min-w-0 gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:gap-8">
         <!-- Informations -->
         <aside
-          class="rounded-3xl border border-slate-800 bg-slate-900/50 p-8"
+          class="min-w-0 rounded-3xl border border-slate-800 bg-slate-900/50 p-5 sm:p-8"
         >
           <h2 class="text-2xl font-bold text-white">
             Restons en contact.
@@ -102,7 +89,7 @@ const sendMessage = () => {
                 <p class="text-xs text-slate-500">Email</p>
 
                 <p
-                  class="mt-1 text-sm font-medium text-slate-200 group-hover:text-lightmagenta"
+                  class="mt-1 break-all text-sm font-medium text-slate-200 transition group-hover:text-lightmagenta"
                 >
                   bennaceur.wassim01@gmail.com
                 </p>
@@ -131,7 +118,7 @@ const sendMessage = () => {
                 <p class="text-xs text-slate-500">GitHub</p>
 
                 <p
-                  class="mt-1 text-sm font-medium text-slate-200 group-hover:text-lightmagenta"
+                  class="mt-1 break-all text-sm font-medium text-slate-200 transition group-hover:text-lightmagenta"
                 >
                   github.com/Wassim-BN
                 </p>
@@ -153,7 +140,7 @@ const sendMessage = () => {
 
         <!-- Formulaire -->
         <section
-          class="rounded-3xl border border-slate-800 bg-slate-900/50 p-8"
+          class="min-w-0 rounded-3xl border border-slate-800 bg-slate-900/50 p-5 sm:p-8"
         >
           <div class="flex items-start justify-between gap-4">
             <div>
@@ -177,7 +164,7 @@ const sendMessage = () => {
           </div>
 
           <form class="mt-10 space-y-6" @submit.prevent="sendMessage">
-            <div class="grid gap-6 sm:grid-cols-2">
+            <div class="grid gap-5 sm:gap-6 sm:grid-cols-2">
               <!-- Nom -->
               <label class="block">
                 <span class="text-sm font-medium text-slate-300">
@@ -227,7 +214,7 @@ const sendMessage = () => {
             <!-- Bouton -->
             <button
               type="submit"
-              class="group inline-flex items-center gap-2 rounded-xl bg-magenta px-5 py-3 font-semibold text-slate-950 transition hover:bg-lightmagenta active:bg-hotmagenta"
+              class="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-magenta px-5 py-3 font-semibold text-slate-950 transition hover:bg-lightmagenta active:bg-hotmagenta sm:w-auto"
             >
               Envoyer le message
 

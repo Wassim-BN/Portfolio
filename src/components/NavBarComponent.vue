@@ -3,130 +3,92 @@ import { ref } from 'vue'
 import { PhList, PhX } from '@phosphor-icons/vue'
 
 const isMenuOpen = ref(false)
+
 const closeMenu = () => {
   isMenuOpen.value = false
 }
+
+const navigation = [
+  { name: 'Accueil', to: '/' },
+  { name: 'Projets', to: '/projects' },
+  { name: 'Compétences', to: '/skills' },
+  { name: 'À propos', to: '/about' },
+  { name: 'Contact', to: '/contact' },
+]
 </script>
 
 <template>
-  <header role="banner" class="border-b border-slate-800 bg-luxenoir backdrop-blur">
-    <nav role="navigation" class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+  <header
+    class="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur"
+  >
+    <nav
+      class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
+    >
       <!-- Logo -->
       <RouterLink
         to="/"
-        class="text-xl font-bold tracking-tight text-softoat"
+        class="text-xl font-bold tracking-tight text-white transition hover:text-lightmagenta active:text-hotmagenta"
         @click="closeMenu"
       >
-        Wassim<span class="text-softoat">.</span>
+        Wassim<span class="text-magenta">.</span>
       </RouterLink>
 
       <!-- Navigation desktop -->
-      <div class="hidden items-center gap-8 md:flex">
+      <div class="hidden items-center gap-1 md:flex">
         <RouterLink
-          to="/"
-          class="text-sm text-slate-300 transition hover:text-magenta"
-          active-class="text-magenta"
+          v-for="item in navigation"
+          :key="item.to"
+          :to="item.to"
+          class="rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition hover:text-lightmagenta active:text-hotmagenta"
+          active-class="bg-magenta/10 text-magenta"
         >
-          Accueil
-        </RouterLink>
-
-        <RouterLink
-          to="/projects"
-          class="text-sm text-slate-300 transition hover:text-magenta"
-          active-class="text-magenta"
-        >
-          Projets
-        </RouterLink>
-
-        <RouterLink
-          to="/skills"
-          class="text-sm text-slate-300 transition hover:text-magenta"
-          active-class="text-magenta"
-        >
-          Compétences
-        </RouterLink>
-
-        <RouterLink
-          to="/about"
-          class="text-sm text-slate-300 transition hover:text-magenta"
-          active-class="text-magenta"
-        >
-          À propos
-        </RouterLink>
-
-        <RouterLink
-          to="/contact"
-          class="rounded-lg bg-magenta px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-lightmagenta active:bg-hotmagenta"
-          active-class="text-magenta"
-        >
-          Contact
+          {{ item.name }}
         </RouterLink>
       </div>
 
       <!-- Bouton mobile -->
       <button
         type="button"
-        class="rounded-lg p-2 text-slate-300 transition hover:bg-slate-800 md:hidden"
-        aria-label="Ouvrir le menu"
+        class="flex size-10 items-center justify-center rounded-xl border border-slate-800 text-slate-300 transition hover:border-lightmagenta hover:text-lightmagenta active:border-hotmagenta active:text-hotmagenta md:hidden"
         :aria-expanded="isMenuOpen"
+        aria-label="Ouvrir le menu"
         @click="isMenuOpen = !isMenuOpen"
       >
-        <PhX v-if="isMenuOpen" :size="24" />
-        <PhList v-else :size="24" />
+        <PhX
+          v-if="isMenuOpen"
+          :size="22"
+          weight="bold"
+        />
+
+        <PhList
+          v-else
+          :size="22"
+          weight="bold"
+        />
       </button>
     </nav>
 
-    <!-- Navigation mobile -->
-    <div
-      v-if="isMenuOpen"
-      class="border-t border-slate-800 md:hidden"
-    >
-      <div class="mx-auto flex max-w-6xl flex-col px-6 py-4">
-        <RouterLink
-          to="/"
-          class="border-b border-slate-800 py-3 text-slate-300 hover:text-magenta"
-          @click="closeMenu"
-          active-class="text-magenta"
-        >
-          Accueil
-        </RouterLink>
-
-        <RouterLink
-          to="/projects"
-          class="border-b border-slate-800 py-3 text-slate-300 hover:text-magenta"
-          @click="closeMenu"
-          active-class="text-magenta"
-        >
-          Projets
-        </RouterLink>
-
-        <RouterLink
-          to="/skills"
-          class="border-b border-slate-800 py-3 text-slate-300 hover:text-magenta"
-          @click="closeMenu"
-          active-class="text-magenta"
-        >
-          Compétences
-        </RouterLink>
-
-        <RouterLink
-          to="/about"
-          class="border-b border-slate-800 py-3 text-slate-300 hover:text-magenta"
-          @click="closeMenu"
-          active-class="text-magenta"
-        >
-          À propos
-        </RouterLink>
-
-        <RouterLink
-          to="/contact"
-          class="py-3 text-magenta hover:text-hotmagenta"
-          @click="closeMenu"
-          active-class="text-magenta"
-        >
-          Contact
-        </RouterLink>
+    <!-- Menu mobile -->
+    <Transition name="mobile-menu">
+      <div
+        v-if="isMenuOpen"
+        class="border-t border-slate-800 bg-slate-950 md:hidden"
+      >
+        <nav class="mx-auto max-w-6xl px-6 py-4">
+          <div class="flex flex-col gap-2">
+            <RouterLink
+              v-for="item in navigation"
+              :key="item.to"
+              :to="item.to"
+              class="rounded-xl px-4 py-3 font-medium text-slate-300 transition hover:bg-slate-900 hover:text-lightmagenta active:bg-hotmagenta/10 active:text-hotmagenta"
+              active-class="bg-magenta/10 text-magenta"
+              @click="closeMenu"
+            >
+              {{ item.name }}
+            </RouterLink>
+          </div>
+        </nav>
       </div>
-    </div>
+    </Transition>
   </header>
 </template>

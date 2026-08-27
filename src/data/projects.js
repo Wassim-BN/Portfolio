@@ -9,6 +9,7 @@ export const projects = [
     demo: '#',
     category: 'Web',
     year: '2026',
+    image: null,
     featured: true,
   },
   {
@@ -21,6 +22,7 @@ export const projects = [
     demo: '#',
     category: 'Web',
     year: '2026',
+    image: null,
     featured: true,
   },
   {
@@ -33,6 +35,7 @@ export const projects = [
     demo: '#',
     category: 'Expérimentation',
     year: '2026',
+    image: null,
     featured: false,
   },
 ]
