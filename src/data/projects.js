@@ -5,8 +5,8 @@ export const projects = [
     description:
       'Un portfolio moderne conçu pour présenter mes projets, mes compétences et mon parcours.',
     technologies: ['Vue.js', 'JavaScript', 'Tailwind CSS'],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/Wassim-BN/Portfolio',
+    demo: 'null',
     category: 'Web',
     year: '2026',
     image: null,
@@ -18,7 +18,7 @@ export const projects = [
     description:
       'Un petit projet pour m\'initier au vue.js.',
     technologies: ['Vue.js', 'JavaScript', 'Tailwind CSS'],
-    github: '#',
+    github: 'https://github.com/Wassim-BN/Todo-list',
     demo: '#',
     category: 'Web',
     year: '2026',

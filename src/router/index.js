@@ -12,16 +12,25 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: {
+        title: 'Wassim — Développeur Web',
+      },
     },
     {
       path: '/projects',
       name: 'projects',
       component: ProjectsView,
+      meta: {
+        title: 'Mes Projets - Wassim',
+      },
     },
     {
       path: '/skills',
       name: 'skills',
       component: SkillsView,
+      meta: {
+        title: 'Compétences - Wassim',
+      },
     },
     {
       path: '/about',
@@ -30,13 +39,23 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: AboutView,
+      meta: {
+        title: 'À propos - Wassim',
+      },
     },
     {
       path: '/contact',
       name: 'contact',
       component: ContactView,
+      meta: {
+        title: 'Contact - Wassim',
+      },
     },
   ],
+})
+
+router.afterEach((to) => {
+  document.title = to.meta.title || 'Wassim — Développeur Web'
 })
 
 export default router

@@ -1,51 +1,31 @@
 <script setup>
 import { ref } from 'vue'
 import {
+  PhBracketsCurly,
+  PhDatabase,
   PhCode,
   PhGitBranch,
-  PhGraduationCap,
   PhRocket,
+  PhGlobe,
+  PhPaintBrush,
+  PhTerminalWindow,
 } from '@phosphor-icons/vue'
 
 import RevealOnScroll from '../components/RevealOnScrollComponent.vue'
 import PageHeader from '../components/PageHeaderComponent.vue'
+import { skillGroups } from '../data/skills.js'
 
-const skillGroups = [
-  {
-    id: 'frontend',
-    title: 'Développement',
-    description:
-      'Créer des interfaces modernes, responsives et agréables à utiliser.',
-    icon: PhCode,
-    skills: ['HTML', 'CSS', 'JavaScript', 'Python', 'Vue.js', 'Tailwind CSS'],
-  },
-  {
-    id: 'tools',
-    title: 'Outils & environnement',
-    description:
-      'Les outils que j’utilise pour développer, organiser et versionner mes projets.',
-    icon: PhGitBranch,
-    skills: ['GitHub', 'npm', 'Vite', 'Zed', 'Ubuntu'],
-  },
-  {
-    id: 'learning',
-    title: 'En apprentissage',
-    description:
-      'Les technologies et concepts que je souhaite approfondir à travers mes futurs projets.',
-    icon: PhGraduationCap,
-    skills: ['Java', 'PHP', 'Back-end', 'Déploiement'],
-  },
-]
-
-const selectedSkill = ref(null)
-
-const selectSkill = (skill) => {
-  selectedSkill.value = selectedSkill.value === skill ? null : skill
+const icons = {
+  'Développement web': PhGlobe,
+  'Interface & design': PhPaintBrush,
+  'Outils & environnement': PhTerminalWindow,
+  'Autres domaines': PhDatabase,
 }
+
 </script>
 
 <template>
-  <main role="main" class="min-h-screen">
+  <main role="main" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
     <!-- Hero -->
     <RevealOnScroll>
       <PageHeader
@@ -58,53 +38,154 @@ const selectSkill = (skill) => {
       />
     </RevealOnScroll>
 
+    <!-- Introduction -->
+    <section class="max-w-3xl items-center">
+      <p class="text-lg leading-8 text-slate-400">
+        Je considère mes compétences comme quelque chose qui évolue
+        constamment. Plutôt que de chercher à tout maîtriser, je préfère
+        comprendre les bases, construire et progresser
+        progressivement.
+      </p>
+    </section>
+
     <!-- Compétences -->
-    <RevealOnScroll>
-      <section class="border-y border-slate-800">
-        <div class="mx-auto max-w-6xl px-6 py-16">
-          <div class="grid gap-6 lg:grid-cols-3">
-            <article
-              v-for="group in skillGroups"
-              :key="group.id"
-              class="flex min-h-[360px] flex-col rounded-3xl border border-slate-800 bg-slate-900/50 p-6 transition hover:-translate-y-1 hover:border-lightmagenta/60"
+    <section class="mt-16 grid gap-5 md:grid-cols-2">
+      <RevealOnScroll
+        v-for="group in skillGroups"
+        :key="group.title"
+      >
+        <article
+          class="h-full rounded-3xl border border-slate-800 bg-slate-900/50 p-6 transition duration-300 hover:-translate-y-1 hover:border-magenta/40 sm:p-8"
+        >
+          <!-- Icon -->
+          <div
+            class="flex size-12 items-center justify-center rounded-2xl bg-magenta/10"
+          >
+            <component
+              :is="icons[group.title]"
+              :size="25"
+              weight="duotone"
+              class="text-magenta"
+            />
+          </div>
+
+          <h2 class="mt-6 text-xl font-bold text-white">
+            {{ group.title }}
+          </h2>
+
+          <p class="mt-3 text-sm leading-7 text-slate-500">
+            {{ group.description }}
+          </p>
+
+          <!-- Skills -->
+          <div class="mt-6 space-y-3">
+            <div
+              v-for="skill in group.skills"
+              :key="skill.name"
+              class="flex items-center justify-between gap-4 rounded-xl border border-slate-800 bg-slate-950/50 px-4 py-3"
             >
-              <!-- Icône -->
-              <div
-                class="flex size-12 items-center justify-center rounded-2xl bg-magenta/10 text-magenta"
+              <div class="flex min-w-0 items-center gap-3">
+                <PhBracketsCurly
+                  :size="18"
+                  class="shrink-0 text-slate-600"
+                />
+
+                <span class="truncate text-sm font-medium text-slate-300">
+                  {{ skill.name }}
+                </span>
+              </div>
+
+              <span
+                class="shrink-0 text-[10px] font-semibold uppercase tracking-wider"
+                :class="{
+                  'text-magenta': skill.level === 'Maîtrisé',
+                  'text-lightmagenta': skill.level === 'En développement',
+                  'text-slate-600': skill.level === 'À explorer',
+                }"
               >
-                <component :is="group.icon" :size="26" weight="bold" />
-              </div>
+                {{ skill.level }}
+              </span>
+            </div>
+          </div>
+        </article>
+      </RevealOnScroll>
+    </section>
 
-              <!-- Texte -->
-              <div class="mt-8">
-                <h2 class="text-xl font-bold text-white">
-                  {{ group.title }}
-                </h2>
+    <!-- Méthode -->
+    <RevealOnScroll>
+      <section
+        class="mt-20 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/50 p-6 sm:p-10"
+      >
+        <div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+          <div>
+            <p
+              class="text-xs font-semibold uppercase tracking-[0.2em] text-magenta"
+            >
+              Ma façon d'apprendre
+            </p>
 
-                <p class="mt-3 leading-7 text-slate-400">
-                  {{ group.description }}
-                </p>
-              </div>
+            <h2
+              class="mt-3 text-3xl font-bold tracking-tight text-white"
+            >
+              Apprendre en
+              <span class="text-magenta">créant.</span>
+            </h2>
+          </div>
 
-              <!-- Technologies -->
-              <div class="mt-auto pt-8">
-                <div class="flex flex-wrap gap-2">
-                  <button
-                    v-for="skill in group.skills"
-                    :key="skill"
-                    type="button"
-                    class="rounded-xl border border-slate-700 px-3 py-2 text-sm text-slate-300 transition hover:border-lightmagenta hover:text-lightmagenta active:border-hotmagenta active:bg-hotmagenta/10"
-                    :class="{
-                      'border-magenta bg-magenta/10 text-magenta':
-                        selectedSkill === skill,
-                    }"
-                    @click="selectSkill(skill)"
-                  >
-                    {{ skill }}
-                  </button>
-                </div>
-              </div>
-            </article>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div
+              class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5"
+            >
+              <PhCode
+                :size="24"
+                weight="duotone"
+                class="text-magenta"
+              />
+
+              <h3 class="mt-4 font-semibold text-white">
+                Comprendre
+              </h3>
+
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Comprendre les concepts avant de chercher à les appliquer.
+              </p>
+            </div>
+
+            <div
+              class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5"
+            >
+              <PhGitBranch
+                :size="24"
+                weight="duotone"
+                class="text-magenta"
+              />
+
+              <h3 class="mt-4 font-semibold text-white">
+                Expérimenter
+              </h3>
+
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Tester différentes approches et apprendre de mes erreurs.
+              </p>
+            </div>
+
+            <div
+              class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5"
+            >
+              <PhTerminalWindow
+                :size="24"
+                weight="duotone"
+                class="text-magenta"
+              />
+
+              <h3 class="mt-4 font-semibold text-white">
+                Construire
+              </h3>
+
+              <p class="mt-2 text-sm leading-6 text-slate-500">
+                Transformer mes connaissances en projets concrets.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -112,7 +193,7 @@ const selectSkill = (skill) => {
 
     <!-- Message interactif -->
     <RevealOnScroll>
-      <section class="mx-auto max-w-6xl px-6 py-20">
+      <section class="mx-auto max-w-6xl py-20">
         <div
           class="rounded-3xl border border-slate-800 bg-slate-900/40 p-8 md:p-12"
         >

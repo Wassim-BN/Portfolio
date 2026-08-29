@@ -1,12 +1,14 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { PhGraduationCap, } from '@phosphor-icons/vue'
 
 const element = ref(null)
 const isVisible = ref(false)
 
 let observer
 
-onMounted(() => {
+onMounted(() => {  PhGraduationCap,
+
   observer = new IntersectionObserver(
     ([entry]) => {
       if (entry.isIntersecting) {
