@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProjectsView from '../views/ProjectsView.vue'
 import SkillsView from '../views/SkillsView.vue'
+import ExperienceView from '../views/ExperienceView.vue'
 import AboutView from '../views/AboutView.vue'
 import ContactView from '../views/ContactView.vue'
 
@@ -30,6 +31,14 @@ const router = createRouter({
       component: SkillsView,
       meta: {
         title: 'Compétences - Wassim',
+      },
+    },
+    {
+      path: '/experience',
+      name: 'experience',
+      component: ExperienceView,
+      meta: {
+        title: 'Expérience - Wassim',
       },
     },
     {

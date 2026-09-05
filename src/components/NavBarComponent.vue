@@ -12,6 +12,7 @@ const navigation = [
   { name: 'Accueil', to: '/' },
   { name: 'Projets', to: '/projects' },
   { name: 'Compétences', to: '/skills' },
+  { name: 'Expérience', to: '/experience' },
   { name: 'À propos', to: '/about' },
   { name: 'Contact', to: '/contact' },
 ]

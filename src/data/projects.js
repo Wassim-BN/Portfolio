@@ -19,7 +19,7 @@ export const projects = [
       'Un petit projet pour m\'initier au vue.js.',
     technologies: ['Vue.js', 'JavaScript', 'Tailwind CSS'],
     github: 'https://github.com/Wassim-BN/Todo-list',
-    demo: '#',
+    demo: 'https://todo-list-tunisie.vercel.app/',
     category: 'Web',
     year: '2026',
     image: null,
@@ -27,7 +27,7 @@ export const projects = [
   },
   {
     id: 3,
-    title: 'Expérimentation',
+    title: 'Test',
     description:
       'Un espace dédié à mes expérimentations, mes tests et à la découverte de nouvelles idées.',
     technologies: ['JavaScript', 'Vue.js'],
